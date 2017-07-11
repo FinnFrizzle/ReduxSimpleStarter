@@ -1,9 +1,10 @@
 import React, {Component} from 'react';
 import ReactDOM from 'react-dom';
+import _ from 'lodash'
 import YTSearch from 'youtube-api-search';
 import SearchBar from './components/Search_Bar.js';
-import VideoList from './components/Video_List';
-import VideoDetail from './components/video_Detail';
+import VideoList from './components/Video_List.js';
+import VideoDetail from './components/video_Detail.js';
 
 const API_KEY = 'AIzaSyBfAAWqYA-v86rBDCpTTHXL1MLdiXvVX4Q';
 
@@ -21,7 +22,7 @@ class App extends Component {
 
 // search in youtube for videos
 videoSearch(term) {
-  YTSearch({key: API_KEY, term: 'das beer boot'}, (videos) => {
+  YTSearch({key: API_KEY, term: term}, (videos) => {
     this.setState({
       videos: videos,
       selectedVideo: videos[0]
@@ -31,7 +32,7 @@ videoSearch(term) {
 
 
 
-// create new component - produces HTML
+// produce HTML
   render () {
     return (
       <div>
