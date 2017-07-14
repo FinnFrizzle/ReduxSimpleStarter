@@ -34,9 +34,11 @@ videoSearch(term) {
 
 // produce HTML
   render () {
+    const videoSearch = _.debounce((term) => {this.videoSearch(term)}, 300);
+
     return (
       <div>
-        <SearchBar onSearchTermChange={term => this.videoSearch(term)}/>
+        <SearchBar onSearchTermChange={videoSearch}/>
         <VideoDetail video={this.state.selectedVideo} />
         <VideoList
           onVideoSelect={selectedVideo => this.setState({selectedVideo})}
